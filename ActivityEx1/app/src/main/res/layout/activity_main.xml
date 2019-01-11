@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:layout_weight="1">
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:text="Login" android:gravity="center" android:textSize="40dp" android:id="@+id/title"
+        />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
+                      android:text="ID" android:id="@+id/labelId" android:gravity="center" android:textSize="40dp"/>
+            <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                      android:hint="아이디를 입력해주세요" android:id="@+id/editId" android:gravity="center"
+                      android:textSize="20dp" android:inputType="text"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                      android:orientation="horizontal">
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
+                      android:text="PW" android:id="@+id/labelPw" android:gravity="center" android:textSize="40dp"/>
+            <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                      android:hint="비밀번호를 입력해주세요" android:id="@+id/editPw" android:gravity="center"
+                      android:textSize="20dp" android:inputType="textPassword"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal">
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Login" android:id="@+id/loginBtn"
+            />
+            <Button android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:text="Sign Up" android:id="@+id/signBtn"
+            />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
