@@ -27,7 +27,11 @@ class MainActivity : AppCompatActivity() {
                 val url = Request.Builder().url("http://13.125.170.17/InputTest.php")
                 val bodyBuilder = FormBody.Builder()
 
+                // post 형식으로 보낼 데이터 담기
                 bodyBuilder.add("name", editText.text.toString())
+                bodyBuilder.add("address", editText2.text.toString())
+
+                // 최종 요청 객체 생성
                 val request = url.post(bodyBuilder.build()).build()
                 client.newCall(request).enqueue(InputCallback())
             } catch (e: Exception) {
@@ -45,10 +49,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "연결이 성공했습니다.", Toast.LENGTH_SHORT).show()
 
             runOnUiThread {
-                textView.text ="""
-                    name : ${editText.text}
-                    address : ${editText2.text}
-                """.trimIndent()
+                textView.text = "이름 : ${editText.text}\n"
+                textView.append("주소 : ${editText2.text}\n")
             }
         }
     }
