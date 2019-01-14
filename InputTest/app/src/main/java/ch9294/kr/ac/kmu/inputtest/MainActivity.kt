@@ -2,7 +2,6 @@ package ch9294.kr.ac.kmu.inputtest
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
@@ -15,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         button.setOnClickListener { v ->
-            val inputThread = InputThread()
-            inputThread.start()
+            val thread = InputThread()
+            thread.start()
         }
     }
 
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 bodyBuilder.add("name", editText.text.toString())
                 bodyBuilder.add("address", editText2.text.toString())
 
-                // 최종 요청 객체 생성
+                // 최종 요청 객체 생성 및 POST 방식으로 요청
                 val request = url.post(bodyBuilder.build()).build()
                 client.newCall(request).enqueue(InputCallback())
             } catch (e: Exception) {
@@ -42,15 +41,17 @@ class MainActivity : AppCompatActivity() {
 
     inner class InputCallback : Callback {
         override fun onFailure(call: Call, e: IOException) {
-            Toast.makeText(this@MainActivity, "연결에 실패했습니다.", Toast.LENGTH_SHORT).show()
+            runOnUiThread {
+                Toast.makeText(this@MainActivity, "연결 실패", Toast.LENGTH_SHORT).show()
+            }
         }
 
         override fun onResponse(call: Call, response: Response) {
-            Toast.makeText(this@MainActivity, "연결이 성공했습니다.", Toast.LENGTH_SHORT).show()
+            val result = response.body()?.string()
 
             runOnUiThread {
-                textView.text = "이름 : ${editText.text}\n"
-                textView.append("주소 : ${editText2.text}\n")
+                Toast.makeText(this@MainActivity, "${editText.text} : ${editText2.text}", Toast.LENGTH_SHORT).show()
+                textView.text = result
             }
         }
     }
