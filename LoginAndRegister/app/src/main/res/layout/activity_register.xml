@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".RegisterActivity">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:layout_weight="1">
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
+                  android:text="이름"
+                  android:textSize="25dp" android:gravity="center"
+        />
+        <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                  android:hint="이름 입력" android:gravity="center" android:id="@+id/editName" android:textSize="20dp"
+                  android:inputType="text" android:textStyle="italic"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:layout_weight="1">
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
+                  android:text="아이디"
+                  android:textSize="25dp" android:gravity="center"
+        />
+        <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                  android:hint="아이디 입력" android:gravity="center" android:id="@+id/editId2" android:textSize="20dp"
+                  android:inputType="text" android:textStyle="italic"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:layout_weight="1">
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
+                  android:text="비밀번호"
+                  android:textSize="25dp" android:gravity="center"
+        />
+        <EditText android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                  android:hint="비밀번호 입력" android:gravity="center" android:id="@+id/editPassword2"
+                  android:textSize="20dp"
+                  android:inputType="text" android:textStyle="italic"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:layout_weight="1">
+        <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
+                  android:text="성별" android:textSize="25dp" android:gravity="center"
+        />
+        <RadioGroup android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:orientation="horizontal" android:layout_weight="1" android:gravity="center"
+                    android:id="@+id/radioGender"
+        >
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="남성"
+                         android:textSize="15dp" android:id="@+id/radioMale" android:checked="true"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="여성"
+                         android:textSize="15dp" android:id="@+id/radioFemale"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:layout_weight="1">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="25dp"
+                  android:text="나이 : 1"
+                  android:gravity="center" android:id="@+id/textAge"/>
+        <SeekBar android:layout_width="match_parent" android:layout_height="match_parent"
+
+                 android:max="100" style="@style/Widget.AppCompat.SeekBar" android:id="@+id/editAge"
+                 android:progress="1"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:layout_weight="1" android:gravity="center">
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/registerBtn2"
+                android:text="등록하기"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/resetBtn"
+                android:text="초기화하기"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/cancelBtn"
+                android:text="취소하기"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/confirmIdBtn"
+                android:text="아이디 중복검사"/>
+    </LinearLayout>
+</LinearLayout>
