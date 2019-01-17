@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+
+    <TextView
+            android:text="@string/str1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+    <Button
+            android:text="string"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/button"/>
+    <Button
+            android:text="Array"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/button4"/>
+    <Button
+            android:text="색상 관리"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/button5"/>
+    <Button
+            android:text="크기"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/button6"/>
+</LinearLayout>

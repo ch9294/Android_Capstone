@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Json</string>
+    <string name="text1">데이터 불러오기</string>
+</resources>
