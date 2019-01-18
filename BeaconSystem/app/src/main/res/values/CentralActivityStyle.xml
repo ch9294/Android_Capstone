@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--버튼 설정-->
+    <style name="central_btn_setting">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">60dp</item>
+        <item name="android:textSize">30dp</item>
+    </style>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/top_layout_setting"
+        tools:context=".MainActivity">
+
+    <!--타이틀-->
+    <LinearLayout style="@style/basic_layout_setting" android:gravity="center">
+        <TextView style="@style/title" android:text="@string/main_title"/>
+    </LinearLayout>
+
+    <!--로그인 정보 입력-->
+    <LinearLayout style="@style/basic_layout_setting">
+
+        <!--아이디 입력-->
+        <LinearLayout style="@style/basic_layout_setting2">
+            <TextView style="@style/signUp_textView_setting" android:text="@string/textview_id"/>
+            <EditText style="@style/signUp_editText_setting" android:hint="@string/hint_input_id"
+                      android:id="@+id/inputID"/>
+        </LinearLayout>
+
+        <!--비밀번호 입력-->
+        <LinearLayout style="@style/basic_layout_setting2">
+            <TextView style="@style/signUp_textView_setting" android:text="@string/textview_pw"/>
+            <EditText style="@style/signUp_editText_setting" android:hint="@string/hint_input_pw" android:inputType="textPassword"
+                      android:id="@+id/inputPW"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--버튼 레이아웃-->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="horizontal" android:layout_weight="1.5" android:gravity="center">
+
+        <!--로그인 버튼-->
+        <Button style="@style/main_btn_setting" android:id="@+id/loginBtn" android:text="@string/btn_login"/>
+
+        <!--회원가입 버튼-->
+        <Button style="@style/main_btn_setting" android:id="@+id/signUpBtn" android:text="@string/btn_signUp"/>
+
+        <!--종료 버튼-->
+        <Button style="@style/main_btn_setting" android:id="@+id/exitBtn" android:text="@string/btn_exit"/>
+
+    </LinearLayout>
+
+</LinearLayout>

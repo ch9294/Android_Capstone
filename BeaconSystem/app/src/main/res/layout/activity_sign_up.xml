@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/top_layout_setting"
+        tools:context=".SignUpActivity">
+    <!--타이틀-->
+    <LinearLayout style="@style/basic_layout_setting">
+        <TextView style="@style/title" android:text="@string/signup_title"/>
+    </LinearLayout>
+
+    <!--아이디 입력-->
+    <LinearLayout style="@style/basic_layout_setting2">
+        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_id"/>
+        <EditText style="@style/signUp_editText_setting" android:id="@+id/editID" android:hint="@string/hint_input_id"/>
+    </LinearLayout>
+
+    <!--비밀번호 입력-->
+    <LinearLayout style="@style/basic_layout_setting2">
+        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_pw"/>
+        <EditText style="@style/signUp_editText_setting" android:id="@+id/editPW" android:hint="@string/hint_input_pw"
+                  android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <!--비밀번호 확인-->
+    <LinearLayout style="@style/basic_layout_setting2">
+        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_check"/>
+        <EditText style="@style/signUp_editText_setting" android:id="@+id/editPW2" android:inputType="textPassword"
+                  android:hint="@string/hint_confirm_pw"/>
+    </LinearLayout>
+
+    <!--이름 입력-->
+    <LinearLayout style="@style/basic_layout_setting2">
+        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_name"/>
+        <EditText style="@style/signUp_editText_setting" android:id="@+id/editName"
+                  android:hint="@string/hint_input_name"/>
+    </LinearLayout>
+
+    <!--성별 체크-->
+    <LinearLayout style="@style/basic_layout_setting2">
+        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_gender"/>
+        <RadioGroup style="@style/basic_layout_setting2" android:gravity="center" android:id="@+id/Group_gender">
+            <RadioButton style="@style/radioBtn_setting" android:text="@string/radio_male" android:id="@+id/radioMale"
+                         android:checked="true"/>
+            <RadioButton style="@style/radioBtn_setting" android:text="@string/radio_female"
+                         android:id="@+id/radioFemale"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <!--연령대 체크-->
+    <LinearLayout style="@style/basic_layout_setting2">
+        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_age"/>
+        <RadioGroup style="@style/basic_layout_setting2" android:gravity="center" android:id="@+id/Group_age">
+            <RadioButton style="@style/radioBtn_setting" android:text="@string/radio_child"
+                         android:id="@+id/radioChild"/>
+            <RadioButton style="@style/radioBtn_setting" android:text="@string/radio_youth" android:id="@+id/radioYouth"
+                         android:checked="true"/>
+            <RadioButton style="@style/radioBtn_setting" android:text="@string/radio_adult"
+                         android:id="@+id/radioAdult"/>
+            <RadioButton style="@style/radioBtn_setting" android:text="@string/radio_old" android:id="@+id/radioOld"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <!--버튼 레이아웃-->
+    <LinearLayout style="@style/basic_layout_setting2" android:gravity="center">
+        <Button style="@style/main_btn_setting" android:text="@string/btn_signUp" android:id="@+id/submitBtn"/>
+        <Button style="@style/main_btn_setting" android:text="@string/btn_reset" android:id="@+id/resetBtn"/>
+        <Button style="@style/main_btn_setting" android:text="@string/btn_return" android:id="@+id/returnBtn"/>
+        <Button style="@style/main_btn_setting" android:text="@string/btn_Check" android:id="@+id/checkBtn"/>
+    </LinearLayout>
+
+</LinearLayout>
