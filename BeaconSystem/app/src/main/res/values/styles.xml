@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <!--최상위 레이아웃의 기본 설정-->
     <style name="top_layout_setting">
         <item name="android:layout_width">match_parent</item>

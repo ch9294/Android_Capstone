@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.*
+import org.jetbrains.anko.*
 import org.json.JSONObject
 import java.io.IOException
 import java.lang.Exception
@@ -29,8 +31,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         signUpBtn.setOnClickListener {
-            nextActivity = Intent(this, SignUpActivity::class.java)
-            startActivityForResult(nextActivity, SIGNUP_ACTIVITY)
+//            nextActivity = Intent(this, SignUpActivity::class.java)
+//            startActivityForResult(nextActivity, SIGNUP_ACTIVITY)
+            startActivityForResult(intentFor<SignUpActivity>(),SIGNUP_ACTIVITY)
         }
 
         exitBtn.setOnClickListener {
@@ -98,9 +101,14 @@ class MainActivity : AppCompatActivity() {
             SIGNUP_ACTIVITY -> {
                 when (requestCode) {
                     Activity.RESULT_OK -> {
-                        toast.setText("성공적으로 가입되었습니다.")
-                        toast.duration = Toast.LENGTH_SHORT
-                        toast.show()
+                        UI {
+                            toast("성공적으로 가입되었습니다.")
+
+                            intentFor<SignUpActivity>()
+                        }
+//                        toast.setText("성공적으로 가입되었습니다.")
+//                        toast.duration = Toast.LENGTH_SHORT
+//                        toast.show()
 
                         /*
                     가입에 성공했을 경우 회원가입에서 입력했던 아이디와 비밀번호 정보가 로그인 화면으로 전달되어
@@ -110,9 +118,13 @@ class MainActivity : AppCompatActivity() {
                         inputPW.setText(intent.getStringExtra("pw"))
                     }
                     Activity.RESULT_CANCELED -> {
-                        toast.setText("가입이 취소되었습니다")
-                        toast.duration = Toast.LENGTH_SHORT
-                        toast.show()
+
+                        UI{
+                            toast("가입이 취소되었습니다")
+                        }
+//                        toast.setText("가입이 취소되었습니다")
+//                        toast.duration = Toast.LENGTH_SHORT
+//                        toast.show()
                     }
                 }
             }
