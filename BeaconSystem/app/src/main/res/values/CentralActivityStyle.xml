@@ -8,4 +8,11 @@
         <item name="android:layout_margin">60dp</item>
         <item name="android:textSize">30dp</item>
     </style>
+
+    <style name="central_textview_setting">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

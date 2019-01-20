@@ -31,7 +31,7 @@
 
     <!--이름 입력-->
     <LinearLayout style="@style/basic_layout_setting2">
-        <TextView style="@style/signUp_textView_setting" android:text="@string/textview_name"/>
+        <TextView style="@style/signUp_textView_setting" android:text= "@string/textview_name"/>
         <EditText style="@style/signUp_editText_setting" android:id="@+id/editName"
                   android:hint="@string/hint_input_name"/>
     </LinearLayout>

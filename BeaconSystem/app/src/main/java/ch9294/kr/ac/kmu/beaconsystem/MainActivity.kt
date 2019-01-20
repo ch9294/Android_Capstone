@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private val SIGNUP_ACTIVITY = 0
 
-    private var nextActivity: Intent? = null
-    private val toast = Toast(this)
+    //    private var nextActivity: Intent? = null
+//    private val toast = Toast(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         signUpBtn.setOnClickListener {
-//            nextActivity = Intent(this, SignUpActivity::class.java)
+            //            nextActivity = Intent(this, SignUpActivity::class.java)
 //            startActivityForResult(nextActivity, SIGNUP_ACTIVITY)
-            startActivityForResult(intentFor<SignUpActivity>(),SIGNUP_ACTIVITY)
+            startActivityForResult(intentFor<SignUpActivity>(), SIGNUP_ACTIVITY)
         }
 
         exitBtn.setOnClickListener {
@@ -60,15 +61,17 @@ class MainActivity : AppCompatActivity() {
     inner class LoginCallback : Callback {
         override fun onFailure(call: Call, e: IOException) {
             runOnUiThread {
-                toast.setText("연결 실패")
+                UI {
+                    toast("연결 실패")
+                }
             }
         }
 
         override fun onResponse(call: Call, response: Response) {
             val result = response.body()?.string()
 
-            val first = JSONObject(result)
-            val name = first.keys()
+            val obj = JSONObject(result)
+            val name = obj.keys()
 
             name.forEach {
                 when (it) {
@@ -79,16 +82,31 @@ class MainActivity : AppCompatActivity() {
                         val pref = getSharedPreferences("session", Context.MODE_PRIVATE)
                         pref.edit().putString("id", inputID.toString()).apply()
 
-                        val nextPage = Intent(this@MainActivity,CentralActivity::class.java)
-                        nextPage.flags = Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK + Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                        val nextPage = Intent(this@MainActivity,CentralActivity::class.java)
+//                        nextPage.flags = Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK + Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+                        startActivity(intentFor<CentralActivity>().clearTop().clearTask().newTask())
                     }
 
                     "notEqualPw" -> {
-
+                        UI {
+                            alert("비밀번호가 맞지않습니다", "아이디 및 패스워드 오류") {
+                                yesButton {
+                                    inputPW.text = null
+                                }
+                            }.show()
+                        }
                     }
 
                     "noSearchId" -> {
-
+                        UI {
+                            alert("아이디가 맞지 않습니다", "아이디 및 패스워드 오류") {
+                                yesButton {
+                                    inputID.text = null
+                                    inputPW.text = null
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -103,8 +121,8 @@ class MainActivity : AppCompatActivity() {
                     Activity.RESULT_OK -> {
                         UI {
                             toast("성공적으로 가입되었습니다.")
-
-                            intentFor<SignUpActivity>()
+                            inputID.setText(intent.getStringExtra("id"))
+                            inputPW.setText(intent.getStringExtra("pw"))
                         }
 //                        toast.setText("성공적으로 가입되었습니다.")
 //                        toast.duration = Toast.LENGTH_SHORT
@@ -114,12 +132,12 @@ class MainActivity : AppCompatActivity() {
                     가입에 성공했을 경우 회원가입에서 입력했던 아이디와 비밀번호 정보가 로그인 화면으로 전달되어
                     로그인 입력창에 입력되게 한다.(사용자의 소소한 편의성 제공)
                      */
-                        inputID.setText(intent.getStringExtra("id"))
-                        inputPW.setText(intent.getStringExtra("pw"))
+//                        inputID.setText(intent.getStringExtra("id"))
+//                        inputPW.setText(intent.getStringExtra("pw"))
                     }
                     Activity.RESULT_CANCELED -> {
 
-                        UI{
+                        UI {
                             toast("가입이 취소되었습니다")
                         }
 //                        toast.setText("가입이 취소되었습니다")
