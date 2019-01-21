@@ -1,0 +1,187 @@
+//    private lateinit var editId: EditText
+//    private lateinit var editPw: EditText
+//    private lateinit var editPw2: EditText
+//    private lateinit var editName: EditText
+//    private lateinit var groupGender: RadioGroup
+//    private lateinit var radioMale: RadioButton
+//    private lateinit var radioFemale: RadioButton
+//    private lateinit var groupAge: RadioGroup
+//    private lateinit var radioChild: RadioButton
+//    private lateinit var radioYouth: RadioButton
+//    private lateinit var radioAdult: RadioButton
+//    private lateinit var radioOld: RadioButton
+//    private lateinit var submitBtn: Button
+//    private lateinit var resetBtn: Button
+//    private lateinit var returnBtn: Button
+//    private lateinit var checkBtn: Button
+
+
+//
+//Log.d("test", "New Activity entry")
+//verticalLayout {
+//    include<LinearLayout>(R.style.basic_layout_setting) {
+//        include<TextView>(R.style.title) {
+//            textResource = R.string.signup_title
+//        }
+//    }
+//
+//    // 아이디 입력하기
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        include<TextView>(R.style.signUp_textView_setting) {
+//            textResource = R.string.textview_id
+//        }
+//        editId = include(R.style.signUp_editText_setting) {
+//            hintResource = R.string.hint_input_id
+//        }
+//    }
+//
+//    // 비밀번호 입력하기
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        include<TextView>(R.style.signUp_textView_setting) {
+//            textResource = R.string.textview_check
+//        }
+//        editPw = include(R.style.signUp_editText_setting) {
+//            hintResource = R.string.hint_input_id
+//            inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+//        }
+//    }
+//
+//    // 비밀번호 확인하기
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        include<TextView>(R.style.signUp_textView_setting) {
+//            textResource = R.string.textview_pw
+//        }
+//        editPw2 = include(R.style.signUp_editText_setting) {
+//            hintResource = R.string.hint_confirm_pw
+//            inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+//        }
+//    }
+//
+//    // 이름 입력하기
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        include<TextView>(R.style.signUp_textView_setting) {
+//            textResource = R.string.textview_name
+//        }
+//        editName = include(R.style.signUp_editText_setting) {
+//            hintResource = R.string.hint_input_name
+//        }
+//    }
+//
+//    // 성별 선택하기
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        include<TextView>(R.style.signUp_textView_setting) {
+//            textResource = R.string.textview_gender
+//        }
+//        groupGender = include(R.style.basic_layout_setting2) {
+//            gravity = Gravity.CENTER
+//            radioMale = include(R.style.radioBtn_setting) {
+//                textResource = R.string.radio_male
+//                isChecked = true
+//            }
+//            radioFemale = include(R.style.radioBtn_setting) {
+//                textResource = R.string.radio_female
+//            }
+//        }
+//    }
+//
+////            연령대 선택하기
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        include<TextView>(R.style.signUp_textView_setting) {
+//            textResource = R.string.textview_age
+//        }
+//        groupAge = include(R.style.basic_layout_setting2) {
+//            radioChild = include(R.style.radioBtn_setting) {
+//                textResource = R.string.radio_child
+//            }
+//            radioYouth = include(R.style.radioBtn_setting) {
+//                textResource = R.string.radio_youth
+//            }
+//            radioAdult = include(R.style.radioBtn_setting) {
+//                textResource = R.string.radio_adult
+//            }
+//            radioOld = include(R.style.radioBtn_setting) {
+//                textResource = R.string.radio_old
+//            }
+//        }
+//    }
+//
+////            실행 버튼
+//    include<LinearLayout>(R.style.basic_layout_setting2) {
+//        gravity = Gravity.CENTER
+//
+//        /*
+//가입하기 버튼
+// - 아이디, 비밀번호, 비밀번호 확인, 이름의 경우 모든 내용이 필수 입력사항이므로 하나라도 입력이 되어 있지 않을 경우
+// 토스트 창으로 입력을 유도하게 함
+// */
+//        val selectList = listOf(editId, editPw, editPw2, editName)
+//        submitBtn = include(R.style.main_btn_setting) {
+//            textResource = R.string.btn_signUp
+//            setOnClickListener {
+//                selectList.forEach {
+//                    when (text) {
+//                        null -> {
+//                            toast("필수 입력 사항입니다")
+//                            return@setOnClickListener
+//                        }
+//                        else -> {
+//                            Log.d("confirm", "${text}")
+//                        }
+//                    }
+//                }
+//
+//                /*
+//   로그인 화면으로 돌아갈 때 자신이 회원가입 시 입력하였던 아이디와 비밀번호의 정보를
+//   인텐트를 통해서 로그인 화면으로 전달한다. 그렇게해서 로그인 창에 자동으로 아이디와 비밀번호를 입력시켜 놓음
+//    */
+//                setResult(
+//                    AppCompatActivity.RESULT_OK, intentFor<MainActivity>(
+//                        "id" to editId.text.toString(),
+//                        "pw" to editPw.text.toString()
+//                    )
+//                )
+//                finish()
+//            }
+//        }
+//
+//        /*
+//리셋 버튼
+// - 회원가입 액티비티에 존재하는 모든 입력창의 내용을 초기화한다.
+// - 라디오 버튼의 경우 기존의 정해진 초기값으로 초기화한다.
+// */
+//        resetBtn = include(R.style.main_btn_setting) {
+//            textResource = R.string.btn_reset
+//            setOnClickListener {
+//                selectList.forEach {
+//                    it.text = null
+//                }
+//                radioYouth.isChecked = true
+//                radioMale.isChecked = true
+//            }
+//        }
+//
+//        /*
+//돌아가기 버튼
+// - 로그인 화면으로 돌아가는 버튼이다. 이 버튼을 누르면 기존에 작성하던 항목은 모두 초기화가 된다.
+// */
+//        returnBtn = include(R.style.main_btn_setting) {
+//            textResource = R.string.btn_return
+//            setOnClickListener {
+//                finish()
+//            }
+//        }
+//
+//        /*
+//        아이디 중복 체크 버튼
+//        회원 가입을 할 경우 아이디가 중복되지 않는 유일한 값을 가져야 하기 때문에
+//        사용자가 입력한 아이디 값이 이미 서버에 있는지 확인하기 위한 작업이다
+//         */
+//        checkBtn = include(R.style.main_btn_setting) {
+//            textResource = R.string.btn_Check
+//            setOnClickListener {
+//                val checkthread = CheckThread()
+//                checkthread.start()
+//            }
+//        }
+//    }
+//}

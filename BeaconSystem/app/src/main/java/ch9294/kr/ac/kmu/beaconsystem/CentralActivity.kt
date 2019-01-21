@@ -14,8 +14,7 @@ class CentralActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_central)
-        CentralActivityUI().setContentView(this)
+        setContentView(R.layout.activity_central)
     }
 
     override fun onStart() {
