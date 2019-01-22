@@ -46,6 +46,10 @@
     <string name="toast8">사용 가능한 아이디입니다</string>
     <string name="toast9">중복된 아이디입니다</string>
     <string name="toast10">이미 가입이 된 사용자입니다</string>
+    <string name="toast11">로그아웃 되었습니다</string>
+    <string name="toast12">가입이 취소되었습니다</string>
 
     <string name="alert_title1">중복 확인 메세지</string>
+    <string name="alert_logout_title">로그아웃</string>
+    <string name="alert_logout_msg">로그아웃을 하시겠습니까?</string>
 </resources>

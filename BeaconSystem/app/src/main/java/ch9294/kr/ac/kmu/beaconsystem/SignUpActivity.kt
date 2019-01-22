@@ -209,7 +209,6 @@ class SignUpActivity : AppCompatActivity() {
                 }
                 "SUCCESS" -> {
                     runOnUiThread {
-                        toast(R.string.toast7).show()
                         setResult(
                             Activity.RESULT_OK, intentFor<MainActivity>(
                                 "id" to editID.text,

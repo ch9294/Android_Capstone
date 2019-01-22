@@ -19,13 +19,25 @@ class CentralActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val loginInfo = getPreferences(Context.MODE_PRIVATE)
+        val auth = getSharedPreferences("loginAuth", Context.MODE_PRIVATE)
 
-        if (loginInfo.getString("id", null) != null) {
-//            로그인이 된 상태이기 때문에 바로 onCreate를 호출함
+        if (auth.getString("id", null) != null) {
+            toast("로그인 성공")
         } else {
-            UI {
-                toast("로그인 상태가 아닙니다")
+            toast("로그인 상태가 아닙니다")
+        }
+    }
+
+    override fun onBackPressed() {
+        alert {
+            titleResource = R.string.alert_logout_title
+            messageResource = R.string.alert_logout_msg
+            yesButton {
+                toast(R.string.toast11)
+                finish()
+            }
+            noButton {
+                null
             }
         }
     }
