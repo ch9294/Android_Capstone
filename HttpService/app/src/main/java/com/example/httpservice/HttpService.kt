@@ -14,8 +14,8 @@ import java.io.IOException
 
 class HttpService : Service() {
 
-    var userId : String? = null
-    var userPw : String? = null
+    var userId: String? = null
+    var userPw: String? = null
     private val binder = HttpBindClass()
 
     override fun onBind(intent: Intent): IBinder {
@@ -29,8 +29,9 @@ class HttpService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("test","Service onDestroy")
+        Log.d("test", "Service onDestroy")
     }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         object : Thread() {
@@ -56,9 +57,8 @@ class HttpService : Service() {
                         Log.d("test", "연결 성공")
                         val result = response.body()?.string()
 
-                        when(result){
-                            "SUCCESS_LOGIN" ->{
-                                Log.d("test","when entry")
+                        when (result) {
+                            "SUCCESS_LOGIN" -> {
                                 userId = intent!!.getStringExtra("id")
                                 userPw = intent.getStringExtra("pw")
                             }
@@ -69,15 +69,15 @@ class HttpService : Service() {
                                 "result" to result
                             ).singleTop()
                         )
+
                     }
                 })
             }
         }.start()
-
         return super.onStartCommand(intent, flags, startId)
     }
 
-    inner class HttpBindClass : Binder(){
-        fun getService() : HttpService = this@HttpService
+    inner class HttpBindClass : Binder() {
+        fun getService(): HttpService = this@HttpService
     }
 }

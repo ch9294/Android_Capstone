@@ -1,12 +1,13 @@
 package com.example.activitycontroller
 
-import android.content.Context
-import android.net.Uri
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import kotlinx.android.synthetic.main.fragment_result.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -16,87 +17,39 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [InputFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
- * Use the [InputFragment.newInstance] factory method to
- * create an instance of this fragment.
  *
  */
 class InputFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var button: Button
+    private lateinit var edit1: EditText
+    private lateinit var edit2: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_input, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_input, container, false)
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InputFragment.
+        /*
+        프래그먼트에서는 액티비티와 같이 xml의 뷰들을 즉시 프로퍼티로 가져오는 것이 불가능하다
+        기존 자바에서 쓰던 방식과 같이 xml에서 설정한 아이디를 가지고 코틀린 코드와 연결시켜 주어야
+        한다.
          */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InputFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+
+        button = view.findViewById(R.id.button)
+        edit1 = view.findViewById(R.id.editText)
+        edit2 = view.findViewById(R.id.editText2)
+
+        button.setOnClickListener {
+            // 프래그먼트는 자기 자신을 관리하고 있는 액티비티를 프로퍼티로 가지고 있음
+            val mainActivity = activity as MainActivity
+            mainActivity.value1 = edit1.text.toString()
+            mainActivity.value2 = edit2.text.toString()
+            mainActivity.setFragment("result")
+
+        }
+        return view
     }
+
 }
