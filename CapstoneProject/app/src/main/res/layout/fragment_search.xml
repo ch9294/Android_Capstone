@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".ac.kmu.capstone.fragment.SearchFragment">
+    <RadioGroup android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center" android:id="@+id/searchGrp"
+    >
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="노선 번호"
+                     android:id="@+id/radioBus" android:checked="true"/>
+        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="정류장"
+                     android:checked="false" android:id="@+id/radioPlatform"/>
+    </RadioGroup>
+
+    <android.support.v7.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchView"/>
+    <ListView
+            android:nestedScrollingEnabled="true"
+            android:layout_gravity="center"
+            android:id="@+id/searchList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</LinearLayout>
