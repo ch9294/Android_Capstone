@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content" android:id="@+id/alertBusNoBody" android:text="선택한 버스를 예약하시겠습니까?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:gravity="center"
+                android:text="금액"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/expense" android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+    </LinearLayout>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="현재 잔액과 비용을 비교한후 가능한지 안한지 알려주기"
+            android:id="@+id/alertBusNoNotify" android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+</LinearLayout>

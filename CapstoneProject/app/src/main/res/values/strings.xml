@@ -3,4 +3,16 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--사용자 정보 프래그먼트에 사용되는 문자열-->
+    <string name="userNameText">이름</string>
+    <string name="userEmailText">이메일</string>
+    <string name="userCashText">잔액</string>
+    <string name="userBookText">예약</string>
+    <string name="userTransText">환승</string>
+    <string name="userInText">탑승</string>
+    <string name="userGetOffTimeText">하차시간</string>
+    <string name="userTransCntText">환승횟수</string>
+    <string name="userLastButNoText">이전 버스</string>
 </resources>

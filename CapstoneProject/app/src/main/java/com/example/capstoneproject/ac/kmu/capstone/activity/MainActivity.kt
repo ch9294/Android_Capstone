@@ -11,10 +11,9 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.*
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.toast
+import okhttp3.*
+import org.jetbrains.anko.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity(), AnkoLogger, GoogleApiClient.OnConnectionFailedListener {
 
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity(), AnkoLogger, GoogleApiClient.OnConnecti
         mAuth = FirebaseAuth.getInstance()
 
         googleSignInBtn.setOnClickListener {
-            info("로그인 버튼 클릭")
             val signIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
             startActivityForResult(signIntent,
                 RC_SIGN_IN
@@ -75,7 +73,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger, GoogleApiClient.OnConnecti
                         firebaseAuthWithGoogle(account!!)
                     }
                     false -> {
-                        toast("로그인 실패1").show()
+                        toast("로그인 실패").show()
                     }
                 }
             }
@@ -87,10 +85,19 @@ class MainActivity : AppCompatActivity(), AnkoLogger, GoogleApiClient.OnConnecti
         mAuth.signInWithCredential(credential).addOnCompleteListener {
             when (!it.isSuccessful) {
                 true -> {
-                    toast("로그인 실패2").show()
+                    toast("로그인 실패").show()
                 }
                 false -> {
                     toast("로그인 성공").show()
+                    doAsync {
+                        val url = Request.Builder().url("http://13.125.170.17/googleUserInsert.php")
+                        val body = FormBody.Builder().apply {
+                            add("user_email",mAuth.currentUser?.email!!)
+                            add("user_name",mAuth.currentUser?.displayName!!)
+                        }.build()
+                        val request = url.post(body).build()
+                        OkHttpClient().newCall(request).execute()
+                    }
                     startActivity(intentFor<HomeActivity>())
                 }
             }

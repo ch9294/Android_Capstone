@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ac.kmu.capstone.fragment.UserInfoFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".ac.kmu.capstone.fragment.UserInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
-
-</FrameLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userNameText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userName"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userEmailText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userEmail"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userCashText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userCash"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userBookText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userBook"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userTransText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userTrans"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userGetOffTimeText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userGetOffTime"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2" android:text="@string/userInText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userIn"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+    <LinearLayout style="@style/userInfoLinearLayoutStyle">
+        <TextView style="@style/userInfoTextViewStyle2"
+                  android:text="@string/userLastButNoText"/>
+        <TextView style="@style/userInfoTextViewStyle1" android:id="@+id/userLastBusNo"/>
+    </LinearLayout>
+    <View style="@style/LayoutBoarderLineStyle"/>
+</LinearLayout>
