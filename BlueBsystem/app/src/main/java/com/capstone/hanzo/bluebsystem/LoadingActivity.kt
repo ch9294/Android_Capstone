@@ -15,12 +15,10 @@ class LoadingActivity : AppCompatActivity() {
         loading()
     }
 
-    private fun loading(){
-        Handler().postDelayed(
-            Runnable {
+    private fun loading() {
+        Handler().postDelayed({
                 startActivity(intentFor<LoginActivity>())
                 finish()
-            }
-        ,700)
+            }, 700)
     }
 }

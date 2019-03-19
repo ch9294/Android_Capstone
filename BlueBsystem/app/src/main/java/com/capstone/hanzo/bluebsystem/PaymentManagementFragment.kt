@@ -28,7 +28,6 @@ import org.jetbrains.anko.sdk27.coroutines.textChangedListener
 import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.yesButton
 
-
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -45,17 +44,13 @@ class PaymentManagementFragment : Fragment(){
     private lateinit var textExpense: TextView
     private val user = FirebaseAuth.getInstance().currentUser
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_payment_management, container, false)
-        with(view) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view = inflater.inflate(R.layout.fragment_payment_management, container, false).apply {
             btnCharge = find(R.id.BtnCharge)
             editExpense = find(R.id.editExpense)
             textExpense = find(R.id.textExpense)
         }
-
         editExpense.addTextChangedListener(TextChangedListener())
         btnCharge.setOnClickListener(ChargeListener())
 
@@ -96,6 +91,7 @@ class PaymentManagementFragment : Fragment(){
     inner class ChargeListener : View.OnClickListener {
         override fun onClick(v: View?) {
             val data = editExpense.text.toString().toInt()
+
             if (data < 1000) {
                 alert {
                     message = "1000원 이상 입력해주세요"

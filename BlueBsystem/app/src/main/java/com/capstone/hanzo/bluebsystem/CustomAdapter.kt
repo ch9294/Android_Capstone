@@ -15,6 +15,7 @@ class PlatformListAdapter : BaseAdapter(), Filterable {
     private val itemList: ArrayList<PlatformArvlInfoList> = ArrayList()
     // 필터링 된 데이터
     private var filteredItemList = itemList
+
     private lateinit var id: TextView
     private lateinit var number: TextView
     private lateinit var name: TextView
@@ -107,6 +108,7 @@ class NumberListAdapter : BaseAdapter(), Filterable {
     private val itemList: ArrayList<BusNoList> = ArrayList()
     // 필터링 된 데이터
     private var filteredItemList = itemList
+
     private lateinit var number: TextView
     private lateinit var start: TextView
     private lateinit var end: TextView

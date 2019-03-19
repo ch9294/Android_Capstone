@@ -46,7 +46,12 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view = inflater.inflate(R.layout.fragment_reservation_bus, container, false)
+        val view = inflater.inflate(R.layout.fragment_reservation_bus, container, false).apply {
+            RB_searchST = find(R.id.RB_searchST)
+            RB_numSearch = find(R.id.RB_numSearch)
+            RB_stSearch = find(R.id.RB_stSearch)
+            RB_listView = find(R.id.RB_listView)
+        }
 
         // 액티비티 컨트롤러
         val controller = activity as MenuActivity
@@ -55,30 +60,22 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
             getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         }
 
-        // 뷰 초기화
-        with(view) {
-            RB_searchST = find(R.id.RB_searchST)
-            RB_numSearch = find(R.id.RB_numSearch)
-            RB_stSearch = find(R.id.RB_stSearch)
-            RB_listView = find(R.id.RB_listView)
-        }
-
         /**
          * 각각의 뷰들의 설정
          */
-        RB_searchST.apply {
+        RB_searchST.run {
             hint = "노선번호 검색"
         }
 
         PlatformListInitThread().start()
         NumberListInitThread().start()
 
-        RB_numSearch.apply {
+        RB_numSearch.run {
             setTextColor(Color.parseColor("#FFFFFF"))
             setBackgroundColor(Color.parseColor("#000E2B"))
             setOnClickListener {
 
-                RB_searchST.apply {
+                RB_searchST.run {
                     setText("")
                     hint = "노선번호 검색"
                     setOnKeyListener { v, keyCode, event ->
@@ -105,25 +102,26 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
                     })
                 }
 
-                RB_numSearch.apply {
+                RB_numSearch.run {
                     setTextColor(Color.parseColor("#FFFFFF"))
                     setBackgroundColor(Color.parseColor("#000E2B"))
                 }
-                RB_stSearch.apply {
+
+                RB_stSearch.run {
                     setTextColor(Color.parseColor("#000E2B"))
                     setBackgroundColor(Color.parseColor("#FFFFFF"))
                 }
 
-                RB_listView.apply {
+                RB_listView.run {
                     adapter = busAdapter
                 }
             }
 
         }
 
-        RB_stSearch.apply {
+        RB_stSearch.run {
             setOnClickListener {
-                RB_searchST.apply {
+                RB_searchST.run {
                     setText("")
                     hint = "정류장 검색"
                     setOnKeyListener { v, keyCode, event ->
@@ -153,23 +151,23 @@ class ReservationBusFragment : Fragment(), AnkoLogger {
                 }
 
 
-                RB_stSearch.apply {
+                RB_stSearch.run {
                     setTextColor(Color.parseColor("#FFFFFF"))
                     setBackgroundColor(Color.parseColor("#000E2B"))
                 }
 
-                RB_numSearch.apply {
+                RB_numSearch.run {
                     setTextColor(Color.parseColor("#000E2B"))
                     setBackgroundColor(Color.parseColor("#FFFFFF"))
                 }
 
-                RB_listView.apply {
+                RB_listView.run {
                     adapter = platAdapter
                     onItemClickListener = object : AdapterView.OnItemClickListener {
                         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                             val trans = controller.supportFragmentManager.beginTransaction()
-
                             val v = parent?.getItemAtPosition(position) as PlatformArvlInfoList
+
                             controller.sharedPlatformId = v.platId
                             controller.sharedPlatformName = v.platName
 
