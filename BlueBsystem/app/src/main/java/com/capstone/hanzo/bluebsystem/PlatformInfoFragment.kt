@@ -48,7 +48,9 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_platform_info2, container, false).apply {
+        val view = inflater
+            .inflate(R.layout.fragment_platform_info2, container, false)
+            .apply {
             PI_ListView = find(R.id.PI_ListView2)
             PI_listPlatName = find(R.id.PI_listPlatName2)
             PI_swipe = find(R.id.listSwipe)
@@ -64,66 +66,13 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
             text = ctrl.sharedPlatformName
         }
 
-        PI_ListView.apply {
-            onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-                val v = parent?.getItemAtPosition(position) as PlatformArvlInfoList2
-                val alert = AlertDialog.Builder(ctrl)
-
-                alert.apply {
-                    setTitle("${v.number}번 버스 예약하기")
-
-                    setView(ctrl.layoutInflater.inflate(R.layout.reservation_alert, null).apply {
-                        val expense: TextView = find(R.id.expenseAlert)
-                        val balance: TextView = find(R.id.balanceAlert)
-                        val msg: TextView = find(R.id.msgAlert)
-
-                        expense.run {
-                            when (v.number.contains("급행")) {
-                                true -> text = 1650.toString()
-                                false -> text = 1250.toString()
-                            }
-                        }
-
-                        balance.run {
-                            text = ctrl.sharedUserBalance
-                        }
-
-                        msg.run {
-                            when (expense.text.toString().toInt() > balance.text.toString().toInt()) {
-                                true -> {
-                                    setTextColor(Color.RED)
-                                    text = "잔액이 부족합니다"
-                                }
-
-                                false -> {
-                                    setTextColor(Color.BLUE)
-                                    text = "예약이 가능합니다"
-                                }
-                            }
-                        }
-                    })
-
-                    val lisentner = DialogInterface.OnClickListener { dialog, which ->
-
-                        val alert = dialog as AlertDialog
-                        var text : TextView? = alert.findViewById(R.id.msgAlert)
-
-                        when (which) {
-                            DialogInterface.BUTTON_POSITIVE -> {
-
-                                UserBookingStateThread(v.number).start()
-                                toast("예약").show()
-                            }
-                            DialogInterface.BUTTON_NEGATIVE -> {
-                                toast("취소").show()
-                            }
-                        }
-                    }
-                    alert.setPositiveButton("예약", lisentner)
-                    alert.setNegativeButton("취소", lisentner)
-                }.show()
-            }
-        }
+        // 일단 예약 기능을 없애기 위해 클릭 기능 삭제
+//        PI_ListView.apply {
+//            onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+//                val v = parent?.getItemAtPosition(position) as PlatformArvlInfoList2
+//
+//            }
+//        }
         return view
     }
 
@@ -147,8 +96,8 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
                         "ServiceKey=SQYXLo2JYmzB7pvVorqfLma6NF38tdCUkcJ0Pn0pXJC0G4fPu%2F7xt%2Bqpoq%2F1qkiBw1krMnqNMNqxcLs0H3B7%2Bw%3D%3D" +
                         "&cityCode=22" +
                         "&nodeId=${(activity as MenuActivity).sharedPlatformId}" +
-                        "&numOfRows=20"
-            ).openStream()
+                        "&numOfRows=20")
+                .openStream()
 
             val factory = DocumentBuilderFactory.newInstance()
             val builder = factory.newDocumentBuilder()
@@ -162,8 +111,7 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
 
             for (idx in 0 until itemList.length) {
                 val node = itemList.item(idx) as Element
-                val time =
-                    (((node.getElementsByTagName("arrtime").item(0) as Element).textContent).toInt() / 60).toString()
+                val time = (((node.getElementsByTagName("arrtime").item(0) as Element).textContent).toInt() / 60).toString()
                 val busNum = (node.getElementsByTagName("routeno").item(0) as Element).textContent
                 val type = (node.getElementsByTagName("vehicletp").item(0) as Element).textContent
                 listAdapter.addItem(busNum, time, type)
@@ -175,7 +123,7 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         }
     }
 
-    // 사용자의 예약 상태를 갱신하는 쓰레드(2019.3.1에 쓰레드 작성 중이었음)
+    // 사용자의 예약 상태를 갱신하는 쓰레드
     inner class UserBookingStateThread(val number: String) : Thread() {
         override fun run() {
             val url = Request.Builder().url("http://13.125.170.17/userBookingStateRenewal.php")
@@ -208,3 +156,53 @@ class PlatformInfoFragment : Fragment(), AnkoLogger, SwipeRefreshLayout.OnRefres
         }
     }
 }
+
+
+//AlertDialog.Builder(ctrl).apply {
+//    setTitle("${v.number}번 버스 예약하기")
+//    setView(ctrl.layoutInflater.inflate(R.layout.reservation_alert, null).apply {
+//        val expense: TextView = find(R.id.expenseAlert)
+//        val balance: TextView = find(R.id.balanceAlert)
+//        val msg: TextView = find(R.id.msgAlert)
+//
+//        expense.run {
+//            when (v.number.contains("급행")) {
+//                true -> text = 1650.toString()
+//                false -> text = 1250.toString()
+//            }
+//        }
+//
+//        balance.run {
+//            text = ctrl.sharedUserBalance
+//        }
+//
+//        msg.run {
+//            when (expense.text.toString().toInt() > balance.text.toString().toInt()) {
+//                true -> {
+//                    setTextColor(Color.RED)
+//                    text = "잔액이 부족합니다"
+//                }
+//
+//                false -> {
+//                    setTextColor(Color.BLUE)
+//                    text = "예약이 가능합니다"
+//                }
+//            }
+//        }
+//    })
+//
+//    val lisentner = DialogInterface.OnClickListener { dialog, which ->
+//        //                        val alert = dialog as AlertDialog
+////                        val text: TextView? = alert.findViewById(R.id.msgAlert)
+//
+//        when (which) {
+//            DialogInterface.BUTTON_POSITIVE -> {
+//                UserBookingStateThread(v.number).start()
+//            }
+//            DialogInterface.BUTTON_NEGATIVE -> {
+//            }
+//        }
+//    }
+//    setPositiveButton("예약", lisentner)
+//    setNegativeButton("취소", lisentner)
+//}.show()

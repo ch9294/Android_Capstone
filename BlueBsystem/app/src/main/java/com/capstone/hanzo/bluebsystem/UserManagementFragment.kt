@@ -14,6 +14,7 @@ import android.widget.TextView
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.runBlocking
 import okhttp3.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.support.v4.intentFor
@@ -67,7 +68,9 @@ class UserManagementFragment : Fragment(), AnkoLogger {
 
     override fun onResume() {
         super.onResume()
-        BalanceRenewalThread().start()
+        runBlocking {
+            BalanceRenewalThread().start()
+        }
     }
 
     // 잔액 갱신을 위한 쓰레드

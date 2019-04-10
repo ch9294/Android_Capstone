@@ -92,4 +92,17 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedList
             }
     }
 
+    /*
+    로그인을 한번 했다면
+    로그인 과정을 따로 거치지 않고 자동 로그인을 하기 위해 만든 코드
+     */
+    override fun onStart() {
+        super.onStart()
+
+        val user = FirebaseAuth.getInstance().currentUser
+
+        user?.let {
+            startActivity(Intent(this,NextActivity::class.java))
+        }
+    }
 }

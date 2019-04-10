@@ -12,7 +12,7 @@ import org.jetbrains.anko.layoutInflater
 
 class PlatformListAdapter : BaseAdapter(), Filterable {
     // 리스트뷰에 표현할 원본데이터
-    private val itemList: ArrayList<PlatformArvlInfoList> = ArrayList()
+    private val itemList: ArrayList<PlatformArvlInfoList> = arrayListOf()
     // 필터링 된 데이터
     private var filteredItemList = itemList
 
@@ -49,17 +49,14 @@ class PlatformListAdapter : BaseAdapter(), Filterable {
 
         val item = filteredItemList[position]
 
-        id.text = item.platId
-        number.text = item.platNo
-        name.text = item.platName
+        id.text = item._id
+        number.text = item._name
+        name.text = item._number
 
         return view!!
     }
 
-    fun addItem(id: String, name: String, number: String) {
-        val item = PlatformArvlInfoList(id, number, name)
-        itemList.add(item)
-    }
+    fun addItem(item: PlatformArvlInfoList) = itemList.add(item)
 
     override fun getFilter(): Filter {
         if (listFilter == null) {
@@ -79,8 +76,8 @@ class PlatformListAdapter : BaseAdapter(), Filterable {
                 val itemList2 = ArrayList<PlatformArvlInfoList>()
 
                 for (item in itemList) {
-                    if (item.platName.toUpperCase().contains(constraint.toString().toUpperCase()) ||
-                        item.platNo.toUpperCase().contains(constraint.toString().toUpperCase())
+                    if (item._number.toUpperCase().contains(constraint.toString().toUpperCase()) ||
+                        item._name.toUpperCase().contains(constraint.toString().toUpperCase())
                     ) {
                         itemList2.add(item)
                     }
@@ -105,7 +102,7 @@ class PlatformListAdapter : BaseAdapter(), Filterable {
 
 class NumberListAdapter : BaseAdapter(), Filterable {
     // 리스트뷰에 표현할 원본데이터
-    private val itemList: ArrayList<BusNoList> = ArrayList()
+    private val itemList: ArrayList<BusNoList> = arrayListOf()
     // 필터링 된 데이터
     private var filteredItemList = itemList
 
@@ -148,10 +145,8 @@ class NumberListAdapter : BaseAdapter(), Filterable {
         return view!!
     }
 
-    fun addItem(id: String, number: String, uuid: String, major: String, start: String, end: String) {
-        val item = BusNoList(id, number, uuid, major, start, end)
-        itemList.add(item)
-    }
+    fun addItem(item: BusNoList) = itemList.add(item)
+
 
     override fun getFilter(): Filter {
         if (listFilter == null) {
@@ -231,7 +226,7 @@ class PlatformArvlInfoListAdapter : BaseAdapter() {
         val arrtime = (itemList[position].time).toInt()
 
         time.apply {
-            text = "${arrtime}분"
+            text = "$arrtime 분"
             if (arrtime <= 5) {
                 setTextColor(Color.RED)
             } else {

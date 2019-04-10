@@ -22,9 +22,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions{
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.0-alpha"
+    implementation 'org.altbeacon:android-beacon-library:2+'
     implementation 'com.github.bootpay:client_android_java:2.0.19'
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+"
